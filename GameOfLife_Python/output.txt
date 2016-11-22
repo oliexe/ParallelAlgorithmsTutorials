@@ -1,0 +1,48 @@
+Výstup programu je jednoduchý do CLI.
+"X" oznaèuje živé buòky, prázdná místa jsou buòky neživé.
+Nadále je poznamenána v konzoli velikost herního pole, aktuální generace, poèet threadu
+a rychlost, za kterou byla aktuální generace vypracována.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Output:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+      X   X             X           X   X   X
+
+    X         X           X         X     X   X
+
+    X         X       X               X   X   X
+
+      X   X       X   X   X             X   X
+
+            X   X       X           X
+
+                      X             X   X
+
+                        X     X
+
+                        X     X         X
+
+    X                                 X
+
+      X   X
+
+    X   X                       X     X
+
+                            X       X
+
+
+
+                                  X
+
+                          X   X     X     X
+
+                                    X
+
+                          X   X   X     X
+
+Size: 10x10
+Generation: 59
+Generated in: 1.9999453674ms
+Threads: 2

@@ -1,0 +1,1 @@
+python main.py -t 1 -s 20

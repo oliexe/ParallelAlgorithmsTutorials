@@ -1,0 +1,49 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Prerekvizity pro pøeklad:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Python 2.7 pro Windows, ne Python 3.x
++ Knihovny - time, random, multiprocessing, argparse, sys, os 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Instrukce pro spuštìní v sekvenèní a paralelní variantì:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Game Of Life je možno spustit bez argumentù, pøípadnì lze specifikovat nastavení pomocí 3
+argumentù - size (-s), threads (-t) a pattern (-p). 
+Size (-s) urèuje velikost GoL matice, threads (-t) urèuje poèet vláken do kterých bude vypoèet rozdìlen
+
+V atributu pattern (-p) lze specifikovat poèáteèní vzor (Je implementovan glider a blinkers), 
+pro ovìøení správnosti implementace pravidel GoL.
+
+Single thread / Sequential:
+python main.py -t 1 -s 20
+python main.py -t 1 -p glider
+python main.py -t 1 -p blinkers
+
+2 threads / Parallel:
+python main.py -t 2 -s 20
+python main.py -t 2 -p glider
+python main.py -t 2 -p blinkers
+
+Spustit s argumentem "-h" pro zobrazení nápovìdy je také možné:
+
+usage: main.py [-h] [-s SIZE] [-t THREADS] [-p [random | blinkers | glider]]
+
+optional arguments:
+  -s SIZE, --size SIZE  Size of the default array (10 is default)
+  -t THREADS, --threads THREADS
+                        Number of threads to use
+  -p [random | blinkers | glider], --pattern [random | blinkers | glider]
+                        Set the startup pattern (Random is default)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Použité zdroje:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+https://cs.wikipedia.org/wiki/Hra_%C5%BEivota
+https://github.com/mimunzar/parallel_conways_life
+http://conwaylife.com/wiki/Category:Patterns
+http://stackoverflow.com/questions/20190668/python-multiprocessing-a-for-loop + další témata
+https://www.metachris.com/2016/04/python-threadpool/
+https://github.com/jlfwong/GameOfLife
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+

@@ -1,0 +1,1 @@
+python main.py -t 4 -p glider

@@ -1,0 +1,1 @@
+python main.py -t 2 -p blinkers
