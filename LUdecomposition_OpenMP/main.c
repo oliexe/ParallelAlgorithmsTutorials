@@ -1,20 +1,27 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
 #include <time.h>
 
-double **make2dmatrix(long n);
-void free2dmatrix(double ** M, long n);
-void printmatrix(double **A, long n);
+double **creatematrix(long n);
+void kill(double ** M, long n);
+long size;
 
-long matrix_size,version;
-char algo;
+double **l;
+double **u;
+double **mat;
 
-
-void decomposeOpenMP(double **A, long n)
+//LU Rozklad - sekvenèní
+void LUseq(double **A)
 {
-	printf("\nDECOMPOSE OPENMP CALLED\n");
 
+}
+
+//LU Rozklad pro openMP
+void LU(double **A)
+{
+    long n = size;
+	printf("\nWait...\n");
 	long i,j,k,rows,mymin,mymax;
 	int pid=0;
 	int nprocs;
@@ -28,9 +35,6 @@ void decomposeOpenMP(double **A, long n)
 #ifdef _OPENMP
 		pid=omp_get_thread_num();
 #endif
-
-	//	printf("1. I am proc no %d out of %d\n",pid,nprocs);
-
 		rows=n/nprocs;
 		mymin=pid * rows;
 		mymax=mymin + rows - 1;
@@ -40,15 +44,13 @@ void decomposeOpenMP(double **A, long n)
 
 		for(k=0;k<n;k++){
 			if(k>=mymin && k<=mymax){
-				//#pragma omp for schedule(static)
 				for(j=k+1;j<n;j++){
 					A[k][j] = A[k][j]/A[k][k];
 				}
 			}
 
-#pragma omp barrier
+                #pragma omp barrier
 			for(i=(((k+1) > mymin) ? (k+1) : mymin);i<=mymax;i++){
-				//#pragma omp for schedule(static)
 				for(j=k+1;j<n;j++){
 					A[i][j] = A[i][j] - A[i][k] * A[k][j];
 				}
@@ -57,114 +59,117 @@ void decomposeOpenMP(double **A, long n)
 	}
 }
 
-
-
-int checkVersion1(double **A, long n)
+//LU Rozklad pro openMP
+//Podle adilansari/luDecomposition
+int LU_2(double **m)
 {
-	long i, j;
-	for (i=0;i<n;i++)
-	{
-		for (j=0;j<n;j++)
-			if(A[i][j]!=1){
-				return 0;
-			}
-	}
-	return 1;
+	int i=0, j=0, k=0;
+	double factor;
+
+#pragma omp for
+		for(j =0; j < size-1; j++) {
+        for(i = j+1; i < size; i++) {
+            factor = m[i][j]/m[j][j];
+            for(k = 0; k < size; k++) {
+            	u[i][k]= m[i][k] - (m[j][k] * factor);
+            }
+            l[i][j] = factor;
+        }
+        //matrix copy m = u
+        for(i =0; i< size; i++) {
+        	for(k=0; k < size; k++) {
+        		m[i][k] = u[i][k];
+        	}
+        }
+    }
+
+    for(i = 0; i < size; i++) {
+        l[i][i] =1;
+    }
+    return 1;
 }
 
-void initializeVersion1(double **A, long n)
+//Tisk dvojrozmerneho pole
+void print(double **matrix)
+{
+    printf("\n");
+	int i =0, j=0;
+    for (i=0;i<size;i++) {
+        for(j=0;j<size;j++) {
+            printf(" %f  ",matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Alokace pameti pro matici
+double **creatematrix(long size)
+{
+	long i;
+	double **m;
+	m = (double**)malloc(size*sizeof(double*));
+	for (i=0;i<size;i++)
+		m[i] = (double*)malloc(size*sizeof(double));
+	return m;
+}
+
+// Smazat matici z pameti
+void kill(double **matrix, long size)
+{
+	long i;
+	if (!matrix) return;
+	for(i=0;i<size;i++)
+		free(matrix[i]);
+	free(matrix);
+}
+
+//Inicializovat matice - naplni celou matici hodnotami
+void init(double **matrix, long size)
 {
 	long i, j;
-	for (i=0;i<n;i++){
-		for (j=0;j<n;j++){
+	for (i=0;i<size;i++){
+		for (j=0;j<size;j++){
 			if(i<=j )
-				A[i][j]=i+1;
+				matrix[i][j]=i+1;
 			else
-				A[i][j]=j+1;
-
+				matrix[i][j]=j+1;
 		}
 	}
 }
 
-
-
-double **getMatrix(long size,long version)
+int main(int argc, char *argv[])
 {
-	double **m=make2dmatrix(size);
-    initializeVersion1(m,size);
-}
+ int a;
+ size = 10;
 
-int check(double **A, long size, long version){
-	checkVersion1(A,size);
+ //Sekvenèní
 
-}
+ //OpenMP Vlakna 2-10
+ for( a = 2; a <= 10; a = a + 1 ){
+    double **matrix=creatematrix(size);
+    long num_threads=a;
+    omp_set_num_threads(num_threads);
+	init(matrix,size);
 
-int main(){
-    matrix_size=1000;
-	long num_threads=8;
-	omp_set_num_threads(num_threads);
+	if(size<=10){
+	    print(matrix);
+	}
 
-	double **matrix=getMatrix(matrix_size,version);
-
-	//printmatrix(matrix,matrix_size);
-
-	/**
-	 * Code to Time the LU decompose
-	 */
 	clock_t begin, end;
 	double time_spent;
 	begin = clock();
 
-	decomposeOpenMP(matrix,matrix_size);
+	LU(matrix);
+	//check(matrix,size);
 
 	end = clock();
 	time_spent = ((double)(end - begin)) / CLOCKS_PER_SEC;
+	printf("Size : %lu \n",size);
+	printf("Threads : %lu\n",num_threads);
+	printf("Time : %f sec\n",time_spent);
 
-	printmatrix(matrix,matrix_size);
+	kill(matrix,size);
+    }
 
-
-	printf("\n**********************************\n\n");
-	printf("Algo selected :%s\n","OpenMP");
-	printf("Size of Matrix :%lu \n",matrix_size);
-	printf("Version Number : %lu\n",version);
-	printf("Number of Procs : %lu\n",num_threads);
-	printf("%s",check(matrix,matrix_size,version)==1? "DECOMPOSE SUCCESSFULL\n":"DECOMPOSE FAIL\n");
-	printf("DECOMPOSE TIME TAKEN : %f seconds\n",time_spent);
-	printf("\n**********************************\n\n");
-
-	free2dmatrix(matrix,matrix_size);
-	return 0;
-}
-
-
-double **make2dmatrix(long n)
-{
-	long i;
-	double **m;
-	m = (double**)malloc(n*sizeof(double*));
-	for (i=0;i<n;i++)
-		m[i] = (double*)malloc(n*sizeof(double));
-	return m;
-}
-
-// only works for dynamic arrays:
-void printmatrix(double **A, long n)
-{
-	printf("\n *************** MATRIX ****************\n\n");
-	long i, j;
-	for (i=0;i<n;i++)
-	{
-		for (j=0;j<n;j++)
-			printf("%f ",A[i][j]);
-		printf("\n");
-	}
-}
-
-void free2dmatrix(double ** M, long n)
-{
-	long i;
-	if (!M) return;
-	for(i=0;i<n;i++)
-		free(M[i]);
-	free(M);
+ return 0;
 }
