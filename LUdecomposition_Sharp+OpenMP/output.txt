@@ -28,7 +28,6 @@ U =
 
 Decomposed in = 00:00:00.0271047
 
-
 Performance test on random generated matrices
 ***********************************************
 A = 100 x 100 - decomposed in = 00:00:00.0344411

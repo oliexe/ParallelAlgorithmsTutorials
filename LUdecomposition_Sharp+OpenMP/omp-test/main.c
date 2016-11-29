@@ -17,7 +17,6 @@ double **mat;
 void LU(double **A)
 {
     long n = size;
-	printf("\nWait...\n");
 	long i,j,k,rows,mymin,mymax;
 	int pid=0;
 	int nprocs;
@@ -79,16 +78,6 @@ double **creatematrix(long size)
 	return m;
 }
 
-// Smazat matici z pameti
-void kill(double **matrix, long size)
-{
-	long i;
-	if (!matrix) return;
-	for(i=0;i<size;i++)
-		free(matrix[i]);
-	free(matrix);
-}
-
 //Inicializovat matice - naplni celou matici hodnotami
 void init(double **matrix, long size)
 {
@@ -107,7 +96,6 @@ int main(int argc, char *argv[])
 {
  int a;
  size = 1000;
-
 
  //threads 2-10
  for( a = 2; a <= 10; a = a + 1 ){
@@ -133,7 +121,6 @@ int main(int argc, char *argv[])
 	printf("Threads : %lu\n",num_threads);
 	printf("Time : %f sec\n",time_spent);
 
-	kill(matrix,size);
     }
 
  return 0;
