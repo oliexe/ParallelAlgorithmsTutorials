@@ -41,8 +41,8 @@ namespace LUdecomposition
             Matrix.print(Matrix.checkPar(Matrix.L, Matrix.U));
             Console.WriteLine("Decomposed in = {0}", sw.Elapsed);
             sw.Reset();
+            Console.WriteLine("Press any key for performance tests...");
             Console.ReadLine();
-
 
             //2: Test výkonnosti - matice 100x100 až 2000x2000
             Console.Clear();

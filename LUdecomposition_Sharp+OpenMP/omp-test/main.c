@@ -1,3 +1,5 @@
+//pouze test podle YouTube tutorialu
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
@@ -10,12 +12,6 @@ long size;
 double **l;
 double **u;
 double **mat;
-
-//LU Rozklad - sekvenèní
-void LUseq(double **A)
-{
-
-}
 
 //LU Rozklad pro openMP
 void LU(double **A)
@@ -57,36 +53,6 @@ void LU(double **A)
 			}
 		}
 	}
-}
-
-//LU Rozklad pro openMP
-//Podle adilansari/luDecomposition
-int LU_2(double **m)
-{
-	int i=0, j=0, k=0;
-	double factor;
-
-#pragma omp for
-		for(j =0; j < size-1; j++) {
-        for(i = j+1; i < size; i++) {
-            factor = m[i][j]/m[j][j];
-            for(k = 0; k < size; k++) {
-            	u[i][k]= m[i][k] - (m[j][k] * factor);
-            }
-            l[i][j] = factor;
-        }
-        //matrix copy m = u
-        for(i =0; i< size; i++) {
-        	for(k=0; k < size; k++) {
-        		m[i][k] = u[i][k];
-        	}
-        }
-    }
-
-    for(i = 0; i < size; i++) {
-        l[i][i] =1;
-    }
-    return 1;
 }
 
 //Tisk dvojrozmerneho pole
@@ -140,11 +106,10 @@ void init(double **matrix, long size)
 int main(int argc, char *argv[])
 {
  int a;
- size = 10;
+ size = 1000;
 
- //Sekvenèní
 
- //OpenMP Vlakna 2-10
+ //threads 2-10
  for( a = 2; a <= 10; a = a + 1 ){
     double **matrix=creatematrix(size);
     long num_threads=a;
@@ -152,7 +117,7 @@ int main(int argc, char *argv[])
 	init(matrix,size);
 
 	if(size<=10){
-	    print(matrix);
+	    //print(matrix);
 	}
 
 	clock_t begin, end;
