@@ -1,0 +1,30 @@
+
+LU Rozklad v OpenMP
+REH0063 - Úkol 2
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Instrukce pro spuštìní:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Program nepracuje s žádnými spouštìcími argumenty. 
+
+Automaticky paralelnì vygeneruje LU rozklad (LU Decomposition) jedné pøedem definované matice 4x4 (v kódu).
+- Pro ovìøení fungování algoritmu, je také zaøízena zkouška výsledku - pomocí implementace
+paralelního násobení L a U. Tento krok také všechny matice vypisuje do okna terminálu.
+V druhé èásti program automaticky provadí "Performance test" na maticích 100x100 až 2000x2000
+Tyto matice jsou automaticky generovány programem a pomoci stopwatch je provedeno mìøení rychlosti zpracování.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Použité zdroje:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+http://blog.ivank.net/lightweight-matrix-class-in-c-strassen-algorithm-lu-decomposition.html
+http://masterstech.blogspot.cz/2009/04/lu-decomposition-and-linear-equation.html
+http://petr.olsak.net/bilin/lurozklad4.pdf
+http://ansari.io/luDecomposition/
+http://www.cse.buffalo.edu/faculty/miller/Courses/CSE633/Tummala-Spring-2014-CSE633.pdf
+https://jamesmccaffrey.wordpress.com/2012/04/22/matrix-multiplication-with-c-and-the-tpl/
+https://www.codeproject.com/articles/19032/c-matrix-library
+http://www.i-programmer.info/programming/c/1420-the-perils-of-the-c-parallel-for-.html
+https://www.codeproject.com/articles/275801/parallel-for-loop-in-csharp
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
