@@ -1,0 +1,35 @@
+Výstup programu je jednoduchý do CLI.
+"X" oznaèuje živé buòky, - jsou buòky neživé.
+Nadále je poznamenána v konzoli aktuální generace a rychlost, za kterou byla aktuální generace vypracována.
+
+
+Output:
+
+
+ -  -  -  -  X  X  -  -  -  -  X  -  -  -  X  -  -  -  -  X  X  -  -  -  -
+ -  -  -  X  -  X  -  -  -  -  X  -  -  -  X  -  -  -  -  X  -  X  -  -  -
+ -  X  -  X  X  X  -  -  -  -  -  -  -  -  -  -  -  -  -  X  X  X  -  X  -
+ X  X  -  X  X  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  X  X  -  X  X
+ X  X  -  X  X  -  -  -  X  X  -  -  -  -  -  X  X  -  -  -  X  X  -  X  X
+ X  -  X  -  X  -  -  X  X  -  -  -  -  -  -  -  X  X  -  -  X  -  X  -  X
+ -  X  X  -  X  -  -  -  X  X  -  -  -  -  -  X  X  -  -  -  X  -  X  X  -
+ -  -  X  X  -  -  -  -  -  X  -  -  -  -  -  X  -  -  -  -  -  X  X  -  -
+ -  -  -  -  X  X  -  -  -  -  X  X  X  X  X  -  -  -  -  X  X  -  -  -  -
+ -  -  -  -  X  X  X  X  -  -  -  X  X  X  -  -  -  X  X  X  X  -  -  -  -
+ -  -  -  X  -  -  -  X  X  -  -  -  X  -  -  -  X  X  -  -  -  X  -  -  -
+ -  -  -  -  X  X  X  -  -  X  -  -  -  -  -  X  -  -  X  X  X  -  -  -  -
+ -  -  -  -  -  X  X  -  -  X  X  -  -  -  X  X  -  -  X  X  -  -  -  -  -
+ -  -  -  -  -  -  -  X  X  X  X  X  -  X  X  X  X  X  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  X  -  X  X  X  -  X  X  X  -  X  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  X  X  -  -  -  -  -  X  X  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  X  -  -  X  X  X  -  -  X  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  X  X  -  X  -  X  X  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  X  X  X  -  -  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  X  -  X  -  -  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  X  X  X  -  -  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+Generation : 17
+Generated in: 1034 ticks

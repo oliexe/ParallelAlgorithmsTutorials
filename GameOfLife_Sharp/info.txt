@@ -1,0 +1,19 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Instrukce pro spuštìní:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Game Of Life je možno spustit bez argumentù, pøípadnì lze specifikovat nastavení pomocí 1 argumentu.
+v atributu lze urèit cestu ke vstupnímu souboru (sample_input.txt je pøiložen jako ukázkový vstupní soubor).
+Pokud nebude první argument urèen, naète program automaticky sample_input.txt ve stejné složce.
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Použité zdroje:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+https://www.codeproject.com/Articles/329881/Code-solution-of-Conway-s-Game-of-life-prob
+http://www.jakubkonka.com/2015/03/15/game-of-life.html
+http://www.dreamincode.net/forums/topic/98341-game-of-life-in-console/
+http://www.i-programmer.info/programming/c/1420-the-perils-of-the-c-parallel-for-.html
+https://www.codeproject.com/articles/275801/parallel-for-loop-in-csharp
+
+
+
